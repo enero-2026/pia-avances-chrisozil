@@ -1,5 +1,4 @@
 import React from 'react';
-// CORREGIDO: Se importó 'Text' para que no rompa la app al renderizar los emojis
 import { Text } from 'react-native'; 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -23,7 +22,6 @@ export default function App() {
               else if (route.name === 'Agregar') iconName = '➕';
               else if (route.name === 'Mapa') iconName = '🗺️';
 
-              // Ahora 'Text' ya está definido arriba y funcionará perfectamente
               return <Text style={{ fontSize: size }}>{iconName}</Text>;
             },
             tabBarActiveTintColor: '#3b82f6',
