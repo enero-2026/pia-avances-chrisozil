@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { View, StyleSheet, Text, Platform } from 'react-native';
 import { TravelContext } from '../context/TravelContext';
 
-// Solo importamos los mapas nativos si NO estamos en la plataforma Web
 let MapView, Marker;
 if (Platform.OS !== 'web') {
   const ReactFontMaps = require('react-native-maps');
@@ -20,7 +19,6 @@ export default function MapScreen() {
     longitudeDelta: 0.15,
   };
 
-  // SI ESTAMOS EN LA PC (WEB): Mostramos una interfaz limpia de simulación para que la app no crashee
   if (Platform.OS === 'web') {
     return (
       <View style={[styles.container, styles.webContainer]}>
@@ -44,12 +42,10 @@ export default function MapScreen() {
     );
   }
 
-  // SI ESTAMOS EN EL CELULAR: Renderiza el mapa real con los pines dinámicos
   return (
     <View style={styles.container}>
       <MapView style={styles.map} initialRegion={defaultRegion}>
         {places.map(place => {
-          // Validamos que el lugar realmente tenga coordenadas válidas antes de pintar el Marker
           if (!place.coords?.latitude || !place.coords?.longitude) return null;
           
           return (
@@ -70,7 +66,6 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { width: '100%', height: '100%' },
-  // Estilos exclusivos para que se vea ordenado en la PC
   webContainer: { padding: 20, backgroundColor: '#f1f5f9', justifyContent: 'center', alignItems: 'center' },
   webTitle: { fontSize: 20, fontWeight: 'bold', color: '#0f172a', marginBottom: 10 },
   webSubtitle: { fontSize: 14, color: '#475569', textAlign: 'center', maxWidth: 400, marginBottom: 20 },
