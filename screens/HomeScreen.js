@@ -6,7 +6,6 @@ export default function HomeScreen() {
   const { places, deletePlace, toggleVisited, updatePlace } = useContext(TravelContext);
   const [showVisited, setShowVisited] = useState(false);
   
-  // Estados para el Modal de Edición
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [editName, setEditName] = useState('');
@@ -39,7 +38,6 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Botones de Filtro */}
       <View style={styles.filterContainer}>
         <TouchableOpacity 
           style={[styles.filterBtn, !showVisited && styles.activeFilter]} 
@@ -55,7 +53,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Listado */}
       <FlatList
         data={filteredPlaces}
         keyExtractor={item => item.id}
@@ -65,7 +62,6 @@ export default function HomeScreen() {
             <View style={{ flex: 1 }}>
               <Text style={styles.title}>{item.name}</Text>
               <Text style={styles.desc}>{item.desc}</Text>
-              {/* CORREGIDO: Uso de ?. para evitar que la app crashee en blanco si coords no existe */}
               <Text style={styles.coords}>
                 Gps: {item.coords?.latitude ? item.coords.latitude.toFixed(4) : '0.0000'}, {item.coords?.longitude ? item.coords.longitude.toFixed(4) : '0.0000'}
               </Text>
@@ -87,7 +83,6 @@ export default function HomeScreen() {
         )}
       />
 
-      {/* Modal para Editar Lugar */}
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={styles.modalCenter}>
           <View style={styles.modalView}>
