@@ -6,7 +6,6 @@ export const TravelContext = createContext();
 export const TravelProvider = ({ children }) => {
   const [places, setPlaces] = useState([]);
 
-  // Cargar datos del dispositivo al iniciar
   useEffect(() => {
     const loadPlaces = async () => {
       try {
@@ -21,7 +20,6 @@ export const TravelProvider = ({ children }) => {
     loadPlaces();
   }, []);
 
-  // Guardar datos en el dispositivo automáticamente cuando cambie el estado
   const saveToStorage = async (newPlaces) => {
     try {
       await AsyncStorage.setItem('@travel_places', JSON.stringify(newPlaces));
@@ -30,7 +28,6 @@ export const TravelProvider = ({ children }) => {
     }
   };
 
-  // CREATE
   const addPlace = (name, desc, coords) => {
     const newPlaces = [
       ...places,
@@ -40,7 +37,6 @@ export const TravelProvider = ({ children }) => {
     saveToStorage(newPlaces);
   };
 
-  // UPDATE (Editar nombre y descripción)
   const updatePlace = (id, updatedName, updatedDesc) => {
     const newPlaces = places.map(place =>
       place.id === id ? { ...place, name: updatedName, desc: updatedDesc } : place
@@ -49,7 +45,6 @@ export const TravelProvider = ({ children }) => {
     saveToStorage(newPlaces);
   };
 
-  // TOGGLE VISITED
   const toggleVisited = (id) => {
     const newPlaces = places.map(place =>
       place.id === id ? { ...place, visited: !place.visited } : place
@@ -58,7 +53,6 @@ export const TravelProvider = ({ children }) => {
     saveToStorage(newPlaces);
   };
 
-  // DELETE
   const deletePlace = (id) => {
     const newPlaces = places.filter(place => place.id !== id);
     setPlaces(newPlaces);
