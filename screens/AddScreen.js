@@ -26,7 +26,6 @@ export default function AddScreen({ navigation }) {
         longitude: location.coords.longitude,
       });
     } catch (error) {
-      // Mock de coordenadas por si estás probando en Web de PC y el navegador bloquea el GPS
       setCoords({ latitude: 25.6866, longitude: -100.3161 });
     }
     setLoading(false);
@@ -94,5 +93,5 @@ const styles = StyleSheet.create({
   saveBtn: { backgroundColor: '#3b82f6', padding: 15, borderRadius: 8, alignItems: 'center', marginTop: 10 },
   btnText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
   coordsCard: { backgroundColor: '#e2e8f0', padding: 12, borderRadius: 8, marginBottom: 15 },
-  coordsText: { color: '#334155', fontSize: 13, textAlign: 'center', fontWeight: '600' } // CORREGIDO: Se removió fontFamily inválido
+  coordsText: { color: '#334155', fontSize: 13, textAlign: 'center', fontWeight: '600' } 
 });
